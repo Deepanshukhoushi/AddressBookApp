@@ -1,0 +1,97 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+############################
+# Maven
+############################
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+############################
+# Eclipse / STS
+############################
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.classpath
+.project
+.springBeans
+.sts4-cache/
+
+############################
+# IntelliJ (if opened there)
+############################
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+############################
+# VS Code
+############################
+.vscode/
+
+############################
+# Logs
+############################
+*.log
+
+############################
+# OS Files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Compiled Files
+############################
+*.class
+
+############################
+# H2 Database Files
+############################
+*.h2.db
+*.mv.db
+
+############################
+# Application Local Config (optional)
+############################
+application-local.properties
