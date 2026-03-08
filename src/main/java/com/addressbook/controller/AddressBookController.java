@@ -22,4 +22,19 @@ public class AddressBookController {
 
         return ResponseEntity.ok(contact);
     }
+    
+    @PutMapping("/update/{firstName}")
+    public ResponseEntity<Contact> updateAddressBookData(
+            @PathVariable String firstName,
+            @RequestBody AddressBookDTO dto) {
+
+        Contact updatedContact = service.updateContact(firstName, dto);
+
+        if (updatedContact != null) {
+            return ResponseEntity.ok(updatedContact);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
+

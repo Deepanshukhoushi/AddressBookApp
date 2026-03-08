@@ -35,4 +35,28 @@ public class AddressBookService {
 
         return contact;
     }
+    
+    public Contact updateContact(String firstName, AddressBookDTO dto) {
+
+        log.info("Updating contact: {}", firstName);
+
+        for (Contact contact : contactList) {
+
+            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+
+                contact.setFirstName(dto.getFirstName());
+                contact.setLastName(dto.getLastName());
+                contact.setAddress(dto.getAddress());
+                contact.setCity(dto.getCity());
+                contact.setState(dto.getState());
+                contact.setZip(dto.getZip());
+                contact.setPhoneNumber(dto.getPhoneNumber());
+                contact.setEmail(dto.getEmail());
+
+                return contact;
+            }
+        }
+
+        return null;
+    }
 }
