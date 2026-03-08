@@ -59,4 +59,12 @@ public class AddressBookService {
 
         return null;
     }
+    
+    public boolean deleteContact(String firstName) {
+
+        log.info("Deleting contact: {}", firstName);
+
+        return contactList.removeIf(contact ->
+                contact.getFirstName().equalsIgnoreCase(firstName));
+    }
 }

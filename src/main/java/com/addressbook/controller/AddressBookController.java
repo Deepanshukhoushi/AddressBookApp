@@ -36,5 +36,17 @@ public class AddressBookController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @DeleteMapping("/delete/{firstName}")
+    public ResponseEntity<String> deleteAddressBookData(@PathVariable String firstName) {
+
+        boolean deleted = service.deleteContact(firstName);
+
+        if (deleted) {
+            return ResponseEntity.ok("Deleted successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 
