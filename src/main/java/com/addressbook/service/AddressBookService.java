@@ -33,6 +33,8 @@ public class AddressBookService {
 
         contactList.add(contact);
 
+        log.info("Total contacts in list: {}", contactList.size());
+
         return contact;
     }
     
@@ -66,5 +68,9 @@ public class AddressBookService {
 
         return contactList.removeIf(contact ->
                 contact.getFirstName().equalsIgnoreCase(firstName));
+    }
+    
+    public List<Contact> getAllContacts() {
+        return contactList;
     }
 }
