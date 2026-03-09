@@ -180,3 +180,23 @@ Ability to search for a person across multiple address books by **City** or **St
 👉 [UC 8: Search Person by City or State](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC8-search-person-by-city-or-state)
 
 ---
+
+### 🔄 UC 9: View Persons by City or State
+**Branch:** `feature/UC9-view-persons-by-city-or-state`
+
+**Requirement:**
+Ability to view all contact persons categorized by their **City** or **State**.
+
+**Implementation Details:**
+* **Grouping Logic:** Used `Collectors.groupingBy()` from the Java Stream API to organize data into a `Map<String, List<Contact>>`.
+* **Efficiency:** Optimized the view layer to return grouped results, making it easier to see contacts from the same region.
+* **Endpoints:** Added `/view/city` and `/view/state` to retrieve categorized dictionaries.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 9: View Persons by City or State](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC9-view-persons-by-city-or-state)
+
+---
