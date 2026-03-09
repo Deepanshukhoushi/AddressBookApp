@@ -180,4 +180,13 @@ public class AddressBookController {
 
 	    return ResponseEntity.ok("Contacts written to JSON successfully");
 	}
+	
+	// API to retrieve contacts from database
+	@GetMapping("/db/contacts")
+	public ResponseEntity<List<Contact>> getContactsFromDatabase() {
+
+	    List<Contact> contacts = service.getContactsFromDatabase();
+
+	    return ResponseEntity.ok(contacts);
+	}
 }

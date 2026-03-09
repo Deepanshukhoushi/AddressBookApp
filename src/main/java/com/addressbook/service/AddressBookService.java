@@ -274,4 +274,12 @@ public class AddressBookService {
 
 	    jsonService.writeContactsToJSON(allContacts);
 	}
+	
+	// Retrieve contacts from database
+	public List<Contact> getContactsFromDatabase() {
+
+	    AddressBookDBService dbService = new AddressBookDBService();
+
+	    return dbService.getAllContactsFromDB();
+	}
 }
