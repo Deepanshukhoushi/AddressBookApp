@@ -199,4 +199,40 @@ public class AddressBookService {
 	            .sorted(Comparator.comparing(Contact::getFirstName))
 	            .toList();
 	}
+	
+	// Sort contacts alphabetically by city across all address books
+	public List<Contact> sortByCity() {
+
+	    log.info("Sorting contacts by city");
+
+	    return addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .sorted(Comparator.comparing(Contact::getCity))
+	            .toList();
+	}
+	
+	// Sort contacts alphabetically by state across all address books
+	public List<Contact> sortByState() {
+
+	    log.info("Sorting contacts by state");
+
+	    return addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .sorted(Comparator.comparing(Contact::getState))
+	            .toList();
+	}
+	
+	// Sort contacts by zip code across all address books
+	public List<Contact> sortByZip() {
+
+	    log.info("Sorting contacts by zip");
+
+	    return addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .sorted(Comparator.comparing(Contact::getZip))
+	            .toList();
+	}
 }

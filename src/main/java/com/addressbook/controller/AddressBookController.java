@@ -126,4 +126,31 @@ public class AddressBookController {
 
 	    return ResponseEntity.ok(contacts);
 	}
+	
+	// API to sort contacts by city, state, or zip
+	@GetMapping("/sort/{field}")
+	public ResponseEntity<List<Contact>> sortContacts(@PathVariable String field) {
+
+	    List<Contact> contacts;
+
+	    switch (field.toLowerCase()) {
+
+	        case "city":
+	            contacts = service.sortByCity();
+	            break;
+
+	        case "state":
+	            contacts = service.sortByState();
+	            break;
+
+	        case "zip":
+	            contacts = service.sortByZip();
+	            break;
+
+	        default:
+	            throw new IllegalArgumentException("Invalid sorting field: " + field);
+	    }
+
+	    return ResponseEntity.ok(contacts);
+	}
 }
