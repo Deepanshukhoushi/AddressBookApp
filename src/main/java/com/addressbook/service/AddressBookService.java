@@ -1,6 +1,7 @@
 package com.addressbook.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,5 +186,17 @@ public class AddressBookService {
 	public List<Contact> getContacts(String bookName) {
 
 		return addressBookMap.getOrDefault(bookName, new ArrayList<>());
+	}
+	
+	// Sort all contacts alphabetically by first name across all address books
+	public List<Contact> sortContactsByName() {
+
+	    log.info("Sorting contacts alphabetically by name");
+
+	    return addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .sorted(Comparator.comparing(Contact::getFirstName))
+	            .toList();
 	}
 }

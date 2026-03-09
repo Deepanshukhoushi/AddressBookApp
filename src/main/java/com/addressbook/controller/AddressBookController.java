@@ -117,4 +117,13 @@ public class AddressBookController {
 
 		return ResponseEntity.ok(count);
 	}
+	
+	// API to retrieve contacts sorted alphabetically by name
+	@GetMapping("/sort/name")
+	public ResponseEntity<List<Contact>> sortContactsByName() {
+
+	    List<Contact> contacts = service.sortContactsByName();
+
+	    return ResponseEntity.ok(contacts);
+	}
 }

@@ -108,4 +108,14 @@ public class Contact {
     public int hashCode() {
         return (firstName + lastName).toLowerCase().hashCode();
     }
+    
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }
