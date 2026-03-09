@@ -100,3 +100,23 @@ Ability to delete an existing Contact from the Address Book using their **ID** v
 👉 [UC 4: Delete Existing Contact](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC4-delete-contact)
 
 ---
+
+### 🔄 UC 5: Ability to Add Multiple Persons
+**Branch:** `feature/UC5-add-multiple-contacts`
+
+**Requirement:**
+Ensure the system can handle adding multiple contact persons to the Address Book and maintain them in a collection.
+
+**Implementation Details:**
+* **Collection Framework:** Optimized the `ArrayList` usage in the Service Layer to handle an increasing number of contacts.
+* **Service Layer:** Refactored the create logic to ensure new contacts are appended to the existing list without data loss.
+* **GET Mapping:** Ensured the `@GetMapping` returns the full collection of contacts to verify multiple entries.
+
+**Key Code Files:**
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+
+🔗 **Code Link:**  
+👉 [UC 5: Ability to Add Multiple Persons](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC5-add-multiple-contacts)
+
+---
