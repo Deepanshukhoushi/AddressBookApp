@@ -16,185 +16,174 @@ import com.addressbook.model.Contact;
 @Service
 public class AddressBookService {
 
-    private static final Logger log = LoggerFactory.getLogger(AddressBookService.class);
+	private static final Logger log = LoggerFactory.getLogger(AddressBookService.class);
 
-    // Map to store multiple AddressBooks
-    private Map<String, List<Contact>> addressBookMap = new HashMap<>();
+	// Map to store multiple AddressBooks
+	private Map<String, List<Contact>> addressBookMap = new HashMap<>();
 
+	// Create AddressBook if it does not exist
+	private void createAddressBookIfNotExists(String bookName) {
 
-    // Create AddressBook if it does not exist
-    private void createAddressBookIfNotExists(String bookName) {
+		if (!addressBookMap.containsKey(bookName)) {
 
-        if (!addressBookMap.containsKey(bookName)) {
+			addressBookMap.put(bookName, new ArrayList<>());
 
-            addressBookMap.put(bookName, new ArrayList<>());
+			log.info("New Address Book created: {}", bookName);
+		}
+	}
 
-            log.info("New Address Book created: {}", bookName);
-        }
-    }
+	// Add Contact to a specific AddressBook
+	public Contact addContact(String bookName, AddressBookDTO dto) {
 
+		createAddressBookIfNotExists(bookName);
 
-    // Add Contact to a specific AddressBook
-    public Contact addContact(String bookName, AddressBookDTO dto) {
+		List<Contact> contactList = addressBookMap.get(bookName);
 
-        createAddressBookIfNotExists(bookName);
+		String name = dto.getFirstName() + " " + dto.getLastName();
 
-        List<Contact> contactList = addressBookMap.get(bookName);
+		boolean duplicateExists = contactList.stream()
+				.anyMatch(contact -> contact.getFirstName().equalsIgnoreCase(dto.getFirstName())
+						&& contact.getLastName().equalsIgnoreCase(dto.getLastName()));
 
-        String name = dto.getFirstName() + " " + dto.getLastName();
+		if (duplicateExists) {
 
-        boolean duplicateExists = contactList.stream()
-                .anyMatch(contact ->
-                        contact.getFirstName().equalsIgnoreCase(dto.getFirstName()) &&
-                        contact.getLastName().equalsIgnoreCase(dto.getLastName())
-                );
-        
-        if (duplicateExists) {
+			log.warn("Duplicate entry detected for: {}", name);
 
-            log.warn("Duplicate entry detected for: {}", name);
+			throw new IllegalArgumentException("Contact already exists: " + name);
+		}
 
-            throw new IllegalArgumentException("Contact already exists: " + name);
-        }
+		Contact contact = new Contact(dto.getFirstName(), dto.getLastName(), dto.getAddress(), dto.getCity(),
+				dto.getState(), dto.getZip(), dto.getPhoneNumber(), dto.getEmail());
 
-        Contact contact = new Contact(
-                dto.getFirstName(),
-                dto.getLastName(),
-                dto.getAddress(),
-                dto.getCity(),
-                dto.getState(),
-                dto.getZip(),
-                dto.getPhoneNumber(),
-                dto.getEmail()
-        );
+		contactList.add(contact);
 
-        contactList.add(contact);
+		log.info("Contact added to {} AddressBook. Total contacts: {}", bookName, contactList.size());
 
-        log.info("Contact added to {} AddressBook. Total contacts: {}",
-                bookName,
-                contactList.size());
+		return contact;
+	}
 
-        return contact;
-    }
+	// Update contact in specific AddressBook
+	public Contact updateContact(String bookName, String firstName, AddressBookDTO dto) {
 
+		List<Contact> contactList = addressBookMap.get(bookName);
 
-    // Update contact in specific AddressBook
-    public Contact updateContact(String bookName, String firstName, AddressBookDTO dto) {
+		if (contactList == null) {
+			return null;
+		}
 
-        List<Contact> contactList = addressBookMap.get(bookName);
+		log.info("Updating contact: {} in {}", firstName, bookName);
 
-        if (contactList == null) {
-            return null;
-        }
+		for (Contact contact : contactList) {
 
-        log.info("Updating contact: {} in {}", firstName, bookName);
+			if (contact.getFirstName().equalsIgnoreCase(firstName)) {
 
-        for (Contact contact : contactList) {
+				contact.setFirstName(dto.getFirstName());
+				contact.setLastName(dto.getLastName());
+				contact.setAddress(dto.getAddress());
+				contact.setCity(dto.getCity());
+				contact.setState(dto.getState());
+				contact.setZip(dto.getZip());
+				contact.setPhoneNumber(dto.getPhoneNumber());
+				contact.setEmail(dto.getEmail());
 
-            if (contact.getFirstName().equalsIgnoreCase(firstName)) {
+				return contact;
+			}
+		}
 
-                contact.setFirstName(dto.getFirstName());
-                contact.setLastName(dto.getLastName());
-                contact.setAddress(dto.getAddress());
-                contact.setCity(dto.getCity());
-                contact.setState(dto.getState());
-                contact.setZip(dto.getZip());
-                contact.setPhoneNumber(dto.getPhoneNumber());
-                contact.setEmail(dto.getEmail());
+		return null;
+	}
 
-                return contact;
-            }
-        }
+	// Delete contact from AddressBook
+	public boolean deleteContact(String bookName, String firstName) {
 
-        return null;
-    }
+		List<Contact> contactList = addressBookMap.get(bookName);
 
+		if (contactList == null) {
+			return false;
+		}
 
-    // Delete contact from AddressBook
-    public boolean deleteContact(String bookName, String firstName) {
+		log.info("Deleting contact: {} from {}", firstName, bookName);
 
-        List<Contact> contactList = addressBookMap.get(bookName);
+		return contactList.removeIf(contact -> contact.getFirstName().equalsIgnoreCase(firstName));
+	}
 
-        if (contactList == null) {
-            return false;
-        }
+	public List<Contact> searchByCity(String city) {
 
-        log.info("Deleting contact: {} from {}", firstName, bookName);
+		log.info("Searching for persons in city: {}", city);
 
-        return contactList.removeIf(contact ->
-                contact.getFirstName().equalsIgnoreCase(firstName));
-    }
+		List<Contact> results = addressBookMap.values().stream().flatMap(List::stream)
+				.filter(contact -> contact.getCity().equalsIgnoreCase(city)).toList();
 
-    public List<Contact> searchByCity(String city) {
+		if (results.isEmpty()) {
+			throw new IllegalArgumentException("No contacts found in city: " + city);
+		}
 
-        log.info("Searching for persons in city: {}", city);
+		return results;
+	}
 
-        List<Contact> results = addressBookMap.values()
-                .stream()
-                .flatMap(List::stream)
-                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
-                .toList();
+	public List<Contact> searchByState(String state) {
 
-        if (results.isEmpty()) {
-            throw new IllegalArgumentException("No contacts found in city: " + city);
-        }
+		log.info("Searching for persons in state: {}", state);
 
-        return results;
-    }
-    
-    public List<Contact> searchByState(String state) {
+		List<Contact> results = addressBookMap.values().stream().flatMap(List::stream)
+				.filter(contact -> contact.getState().equalsIgnoreCase(state)).toList();
 
-        log.info("Searching for persons in state: {}", state);
+		if (results.isEmpty()) {
+			throw new IllegalArgumentException("No contacts found in state: " + state);
+		}
 
-        List<Contact> results = addressBookMap.values()
-                .stream()
-                .flatMap(List::stream)
-                .filter(contact -> contact.getState().equalsIgnoreCase(state))
-                .toList();
+		return results;
+	}
 
-        if (results.isEmpty()) {
-            throw new IllegalArgumentException("No contacts found in state: " + state);
-        }
+	public Map<String, List<Contact>> viewByCity() {
 
-        return results;
-    }
-    
-    public Map<String, List<Contact>> viewByCity() {
+		log.info("Generating view grouped by City");
 
-        log.info("Generating view grouped by City");
+		Map<String, List<Contact>> cityDictionary = addressBookMap.values().stream().flatMap(List::stream)
+				.collect(Collectors.groupingBy(Contact::getCity));
 
-        Map<String, List<Contact>> cityDictionary =
-                addressBookMap.values()
-                        .stream()
-                        .flatMap(List::stream)
-                        .collect(Collectors.groupingBy(Contact::getCity));
+		if (cityDictionary.isEmpty()) {
+			throw new IllegalArgumentException("No contacts available to group by city");
+		}
 
-        if (cityDictionary.isEmpty()) {
-            throw new IllegalArgumentException("No contacts available to group by city");
-        }
+		return cityDictionary;
+	}
 
-        return cityDictionary;
-    }
-    
-    public Map<String, List<Contact>> viewByState() {
+	public Map<String, List<Contact>> viewByState() {
 
-        log.info("Generating view grouped by State");
+		log.info("Generating view grouped by State");
 
-        Map<String, List<Contact>> stateDictionary =
-                addressBookMap.values()
-                        .stream()
-                        .flatMap(List::stream)
-                        .collect(Collectors.groupingBy(Contact::getState));
+		Map<String, List<Contact>> stateDictionary = addressBookMap.values().stream().flatMap(List::stream)
+				.collect(Collectors.groupingBy(Contact::getState));
 
-        if (stateDictionary.isEmpty()) {
-            throw new IllegalArgumentException("No contacts available to group by state");
-        }
+		if (stateDictionary.isEmpty()) {
+			throw new IllegalArgumentException("No contacts available to group by state");
+		}
 
-        return stateDictionary;
-    }
-    
-    // Get contacts from specific AddressBook
-    public List<Contact> getContacts(String bookName) {
+		return stateDictionary;
+	}
 
-        return addressBookMap.getOrDefault(bookName, new ArrayList<>());
-    }
+	// Count contacts in the given city across all address books
+	public long countByCity(String city) {
+
+		log.info("Counting contacts in city: {}", city);
+
+		return addressBookMap.values().stream().flatMap(List::stream)
+				.filter(contact -> contact.getCity().equalsIgnoreCase(city)).count();
+	}
+
+	// Count contacts in the given state across all address books
+	public long countByState(String state) {
+
+		log.info("Counting contacts in state: {}", state);
+
+		return addressBookMap.values().stream().flatMap(List::stream)
+				.filter(contact -> contact.getState().equalsIgnoreCase(state)).count();
+	}
+
+	// Get contacts from specific AddressBook
+	public List<Contact> getContacts(String bookName) {
+
+		return addressBookMap.getOrDefault(bookName, new ArrayList<>());
+	}
 }
