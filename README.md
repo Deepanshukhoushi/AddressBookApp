@@ -200,3 +200,25 @@ Ability to view all contact persons categorized by their **City** or **State**.
 👉 [UC 9: View Persons by City or State](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC9-view-persons-by-city-or-state)
 
 ---
+
+### 🔄 UC 10: Count by City and State
+**Branch:** `feature/UC10-count-contacts-by-city-or-state`
+
+**Requirement:**
+Ability to get the total number of contact persons (count) categorized by **City** or **State** across all address books.
+
+**Implementation Details:**
+* **Stream API:** Implemented `.count()` terminal operation to calculate totals from the filtered stream.
+* **Global Aggregation:** Logic iterates through the `addressBookMap` values to find matches across all available address books.
+* **New Endpoints:**  
+  * `GET /addressbook/count/city/{cityName}`  
+  * `GET /addressbook/count/state/{stateName}`
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 10: Count by City and State](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC10-count-contacts-by-city-or-state)
+
+---
