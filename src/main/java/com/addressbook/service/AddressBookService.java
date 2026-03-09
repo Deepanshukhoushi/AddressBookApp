@@ -6,19 +6,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AddressBookService {
 
     private static final Logger log = LoggerFactory.getLogger(AddressBookService.class);
 
-    private List<Contact> contactList = new ArrayList<>();
+    // Map to store multiple AddressBooks
+    private Map<String, List<Contact>> addressBookMap = new HashMap<>();
 
-    public Contact addContact(AddressBookDTO dto) {
 
-        log.info("Adding new contact: {}", dto.getFirstName());
+    // Create AddressBook if it does not exist
+    private void createAddressBookIfNotExists(String bookName) {
+
+        if (!addressBookMap.containsKey(bookName)) {
+
+            addressBookMap.put(bookName, new ArrayList<>());
+
+            log.info("New Address Book created: {}", bookName);
+        }
+    }
+
+
+    // Add Contact to a specific AddressBook
+    public Contact addContact(String bookName, AddressBookDTO dto) {
+
+        createAddressBookIfNotExists(bookName);
+
+        log.info("Adding new contact: {} to {}", dto.getFirstName(), bookName);
 
         Contact contact = new Contact(
                 dto.getFirstName(),
@@ -31,16 +47,25 @@ public class AddressBookService {
                 dto.getEmail()
         );
 
-        contactList.add(contact);
+        addressBookMap.get(bookName).add(contact);
 
-        log.info("Total contacts in list: {}", contactList.size());
+        log.info("Total contacts in {}: {}", bookName,
+                addressBookMap.get(bookName).size());
 
         return contact;
     }
-    
-    public Contact updateContact(String firstName, AddressBookDTO dto) {
 
-        log.info("Updating contact: {}", firstName);
+
+    // Update contact in specific AddressBook
+    public Contact updateContact(String bookName, String firstName, AddressBookDTO dto) {
+
+        List<Contact> contactList = addressBookMap.get(bookName);
+
+        if (contactList == null) {
+            return null;
+        }
+
+        log.info("Updating contact: {} in {}", firstName, bookName);
 
         for (Contact contact : contactList) {
 
@@ -61,16 +86,27 @@ public class AddressBookService {
 
         return null;
     }
-    
-    public boolean deleteContact(String firstName) {
 
-        log.info("Deleting contact: {}", firstName);
+
+    // Delete contact from AddressBook
+    public boolean deleteContact(String bookName, String firstName) {
+
+        List<Contact> contactList = addressBookMap.get(bookName);
+
+        if (contactList == null) {
+            return false;
+        }
+
+        log.info("Deleting contact: {} from {}", firstName, bookName);
 
         return contactList.removeIf(contact ->
                 contact.getFirstName().equalsIgnoreCase(firstName));
     }
-    
-    public List<Contact> getAllContacts() {
-        return contactList;
+
+
+    // Get contacts from specific AddressBook
+    public List<Contact> getContacts(String bookName) {
+
+        return addressBookMap.getOrDefault(bookName, new ArrayList<>());
     }
 }
