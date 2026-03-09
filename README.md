@@ -323,3 +323,24 @@ Ability to read or write Address Book contacts as a **JSON file** using the **GS
 👉 [UC 15: Address Book as JSON File](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC15-json-file-io)
 
 ---
+
+### 🔄 UC 16: JDBC Database Integration
+**Branch:** `feature/UC16-jdbc-database-integration`
+
+**Requirement:**
+Ability for the AddressBook Service to retrieve all entries from the database using **JDBC**.
+
+**Implementation Details:**
+* **Database Connectivity:** Integrated JDBC to establish a connection between the Spring Boot application and the MySQL database.
+* **TDD Approach:** Followed Test-Driven Development (TDD) by writing JUnit test cases before implementing the retrieval logic.
+* **ER Mapping:** Ensured the database schema aligns with the system's ER model for consistent data representation.
+* **JUnit Testing:** Developed test cases to verify that the service correctly retrieves all records from the database.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Test: AddressBookServiceTest.java](src/test/java/com/addressbook/AddressBookServiceTest.java)
+
+🔗 **Code Link:**  
+👉 [UC 16: JDBC Database Integration](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC16-jdbc-database-integration)
+
+---
