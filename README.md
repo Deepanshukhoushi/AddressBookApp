@@ -303,3 +303,23 @@ Ability to read and write Address Book contacts as a **CSV file** using the **Op
 👉 [UC 14: Address Book as CSV File](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC14-csv-file-io)
 
 ---
+
+### 🔄 UC 15: Address Book as JSON File
+**Branch:** `feature/UC15-json-file-io`
+
+**Requirement:**
+Ability to read or write Address Book contacts as a **JSON file** using the **GSON library**.
+
+**Implementation Details:**
+* **Library Integration:** Integrated the `GSON` library for JSON serialization and deserialization.
+* **Data Persistence:** Implemented logic to store the contact collection as a structured JSON array.
+* **Flexible IO:** Developed service methods to seamlessly convert data between Java objects and the JSON file.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookJSONService.java](src/main/java/com/addressbook/service/AddressBookJSONService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 15: Address Book as JSON File](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC15-json-file-io)
+
+---
