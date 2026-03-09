@@ -80,3 +80,23 @@ Ability to edit an existing Contact in the Address Book by searching for their *
 👉 [UC 3: Edit Existing Contact](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC3-edit-contact)
 
 ---
+
+### 🔄 UC 4: Delete Existing Contact
+**Branch:** `feature/UC4-delete-contact`
+
+**Requirement:**
+Ability to delete an existing Contact from the Address Book using their **ID** via the REST API.
+
+**Implementation Details:**
+* **Controller Layer:** Added `@DeleteMapping` in `AddressBookController` to handle deletion requests using a Path Variable (ID).
+* **Service Layer:** Implemented logic in `AddressBookService` to remove the contact from the in-memory `ArrayList` using the provided ID/index.
+* **Validation:** The service layer processes the removal and returns a success confirmation to the controller.
+
+**Key Code Files:**
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+
+🔗 **Code Link:**  
+👉 [UC 4: Delete Existing Contact](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC4-delete-contact)
+
+---
