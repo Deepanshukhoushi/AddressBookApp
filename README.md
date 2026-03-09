@@ -222,3 +222,24 @@ Ability to get the total number of contact persons (count) categorized by **City
 👉 [UC 10: Count by City and State](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC10-count-contacts-by-city-or-state)
 
 ---
+
+### 🔄 UC 11: Sort Entries Alphabetically by Name
+**Branch:** `feature/UC11-sort-by-name`
+
+**Requirement:**
+Ability to sort the entries in the address book alphabetically by the person's name.
+
+**Implementation Details:**
+* **Java Streams:** Used the `.sorted()` stream operation with a custom `Comparator` to organize contacts by their first name.
+* **Override toString:** Updated the `Contact` model to override `toString()` for standardized console and log output.
+* **Sorting Mechanism:** Ensures that regardless of entry order, the retrieved list is displayed in alphabetical sequence.
+
+**Key Code Files:**
+* 📁 [Model: Contact.java](src/main/java/com/addressbook/model/Contact.java)
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 11: Sort Entries Alphabetically by Name](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC11-sort-by-name)
+
+---
