@@ -38,3 +38,24 @@ This project is a **Java Full Stack Case Study** focused on building a comprehen
 👉 [UC 1: Create Contact Structure](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC1-create-contact)
 
 ---
+
+### 🔄 UC 2: Add New Contact (Current)
+**Branch:** `feature/UC2-add-contact`
+
+**Requirement:**
+Ability to add a new Contact to the Address Book using a REST API or Console.
+
+**Implementation Details:**
+* **Controller Layer:** Created `AddressBookController` with a `@PostMapping` to handle incoming contact data.
+* **Service Layer:** Created `AddressBookService` to manage the business logic of saving contacts.
+* **DTO Integration:** Used `AddressBookDTO` to map request data to the system's internal model.
+
+**Key Code Files:**
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [DTO: AddressBookDTO.java](src/main/java/com/addressbook/dto/AddressBookDTO.java)
+
+🔗 **Code Link:**  
+👉 [UC 2: Add New Contact (Current)](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC2-add-contact)
+
+---
