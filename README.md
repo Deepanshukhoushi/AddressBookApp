@@ -344,3 +344,24 @@ Ability for the AddressBook Service to retrieve all entries from the database us
 👉 [UC 16: JDBC Database Integration](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC16-jdbc-database-integration)
 
 ---
+
+### 🔄 UC 17: Update Contact & Memory Sync
+**Branch:** `feature/UC17-jdbc-update-contact`
+
+**Requirement:**
+Ability to update contact information in the database and ensure the application memory stays in sync.
+
+**Implementation Details:**
+* **Prepared Statements:** Utilized `PreparedStatement` for secure SQL UPDATE operations to prevent SQL injection.
+* **Memory Management:** Implemented logic to refresh the local cache/list immediately after a database update to maintain data integrity.
+* **JUnit Sync Test:** Developed a TDD-based test case using the `equals()` method to verify that the database state matches the application state.
+* **JDBC CRUD:** Followed standard JDBC patterns for connection handling and result set processing.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Model: Contact.java](src/main/java/com/addressbook/model/Contact.java)
+
+🔗 **Code Link:**  
+👉 [UC 17: Update Contact & Memory Sync](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC17-jdbc-update-contact)
+
+---
