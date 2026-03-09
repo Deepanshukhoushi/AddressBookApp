@@ -71,4 +71,20 @@ public class AddressBookController {
 
         return ResponseEntity.ok(contacts);
     }
+    
+    @GetMapping("/search/city/{city}")
+    public ResponseEntity<List<Contact>> searchByCity(@PathVariable String city) {
+
+        List<Contact> contacts = service.searchByCity(city);
+
+        return ResponseEntity.ok(contacts);
+    }
+    
+    @GetMapping("/search/state/{state}")
+    public ResponseEntity<List<Contact>> searchByState(@PathVariable String state) {
+
+        List<Contact> contacts = service.searchByState(state);
+
+        return ResponseEntity.ok(contacts);
+    }
 }

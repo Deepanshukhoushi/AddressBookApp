@@ -119,7 +119,40 @@ public class AddressBookService {
                 contact.getFirstName().equalsIgnoreCase(firstName));
     }
 
+    public List<Contact> searchByCity(String city) {
 
+        log.info("Searching for persons in city: {}", city);
+
+        List<Contact> results = addressBookMap.values()
+                .stream()
+                .flatMap(List::stream)
+                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
+                .toList();
+
+        if (results.isEmpty()) {
+            throw new IllegalArgumentException("No contacts found in city: " + city);
+        }
+
+        return results;
+    }
+    
+    public List<Contact> searchByState(String state) {
+
+        log.info("Searching for persons in state: {}", state);
+
+        List<Contact> results = addressBookMap.values()
+                .stream()
+                .flatMap(List::stream)
+                .filter(contact -> contact.getState().equalsIgnoreCase(state))
+                .toList();
+
+        if (results.isEmpty()) {
+            throw new IllegalArgumentException("No contacts found in state: " + state);
+        }
+
+        return results;
+    }
+    
     // Get contacts from specific AddressBook
     public List<Contact> getContacts(String bookName) {
 
