@@ -243,3 +243,23 @@ Ability to sort the entries in the address book alphabetically by the person's n
 👉 [UC 11: Sort Entries Alphabetically by Name](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC11-sort-by-name)
 
 ---
+
+### 🔄 UC 12: Sort Entries by City, State, or Zip
+**Branch:** `feature/UC12-sort-by-location`
+
+**Requirement:**
+Ability to sort the entries in the address book by **City**, **State**, or **Zip code**.
+
+**Implementation Details:**
+* **Java Streams:** Implemented sorting functions using `.sorted()` and `Comparator.comparing()` to handle geographic data points.
+* **Flexible Sorting:** Developed the service layer to support three sorting criteria: **City**, **State**, and **Zip**.
+* **Collection Library:** Leveraged the Java Collection framework to efficiently reorder and manage the contact lists.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 12: Sort Entries by City, State, or Zip](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC12-sort-by-location)
+
+---
