@@ -261,4 +261,17 @@ public class AddressBookService {
 
 	    csvService.writeContactsToCSV(allContacts);
 	}
+	
+	// Save contacts to JSON file
+	public void saveContactsToJSON() {
+
+	    AddressBookJSONService jsonService = new AddressBookJSONService();
+
+	    List<Contact> allContacts = addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .toList();
+
+	    jsonService.writeContactsToJSON(allContacts);
+	}
 }
