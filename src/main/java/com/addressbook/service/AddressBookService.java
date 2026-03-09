@@ -34,7 +34,22 @@ public class AddressBookService {
 
         createAddressBookIfNotExists(bookName);
 
-        log.info("Adding new contact: {} to {}", dto.getFirstName(), bookName);
+        List<Contact> contactList = addressBookMap.get(bookName);
+
+        String name = dto.getFirstName() + " " + dto.getLastName();
+
+        boolean duplicateExists = contactList.stream()
+                .anyMatch(contact ->
+                        contact.getFirstName().equalsIgnoreCase(dto.getFirstName()) &&
+                        contact.getLastName().equalsIgnoreCase(dto.getLastName())
+                );
+        
+        if (duplicateExists) {
+
+            log.warn("Duplicate entry detected for: {}", name);
+
+            throw new IllegalArgumentException("Contact already exists: " + name);
+        }
 
         Contact contact = new Contact(
                 dto.getFirstName(),
@@ -47,10 +62,11 @@ public class AddressBookService {
                 dto.getEmail()
         );
 
-        addressBookMap.get(bookName).add(contact);
+        contactList.add(contact);
 
-        log.info("Total contacts in {}: {}", bookName,
-                addressBookMap.get(bookName).size());
+        log.info("Contact added to {} AddressBook. Total contacts: {}",
+                bookName,
+                contactList.size());
 
         return contact;
     }
