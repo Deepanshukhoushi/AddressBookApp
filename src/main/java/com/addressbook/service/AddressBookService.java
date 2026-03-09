@@ -248,4 +248,17 @@ public class AddressBookService {
 
 	    fileService.writeContactsToFile(allContacts);
 	}
+	
+	// Save contacts to CSV file
+	public void saveContactsToCSV() {
+
+	    AddressBookCSVService csvService = new AddressBookCSVService();
+
+	    List<Contact> allContacts = addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .toList();
+
+	    csvService.writeContactsToCSV(allContacts);
+	}
 }

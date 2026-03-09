@@ -162,4 +162,13 @@ public class AddressBookController {
 
 	    return ResponseEntity.ok("Contacts written to file successfully");
 	}
+	
+	// API to write contacts to CSV file
+	@GetMapping("/file/writecsv")
+	public ResponseEntity<String> writeContactsToCSV() {
+
+	    service.saveContactsToCSV();
+
+	    return ResponseEntity.ok("Contacts written to CSV successfully");
+	}
 }
