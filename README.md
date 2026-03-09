@@ -283,3 +283,23 @@ Ability to read or write the Address Book with persons' contact details into a f
 👉 [UC 13: Address Book File IO](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC13-file-io)
 
 ---
+
+### 🔄 UC 14: Address Book as CSV File
+**Branch:** `feature/UC14-csv-file-io`
+
+**Requirement:**
+Ability to read and write Address Book contacts as a **CSV file** using the **OpenCSV library**.
+
+**Implementation Details:**
+* **Library Integration:** Integrated `OpenCSV` via Maven to handle CSV parsing and generation.
+* **Data Mapping:** Mapped `Contact` POJO fields to CSV columns using OpenCSV annotations.
+* **Persistence:** Ensured that contact data is stored and retrieved accurately in a structured comma-separated format.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookCSVService.java](src/main/java/com/addressbook/service/AddressBookCSVService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 14: Address Book as CSV File](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC14-csv-file-io)
+
+---
