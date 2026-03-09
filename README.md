@@ -39,7 +39,7 @@ This project is a **Java Full Stack Case Study** focused on building a comprehen
 
 ---
 
-### 🔄 UC 2: Add New Contact (Current)
+### 🔄 UC 2: Add New Contact 
 **Branch:** `feature/UC2-add-contact`
 
 **Requirement:**
@@ -56,6 +56,27 @@ Ability to add a new Contact to the Address Book using a REST API or Console.
 * 📁 [DTO: AddressBookDTO.java](src/main/java/com/addressbook/dto/AddressBookDTO.java)
 
 🔗 **Code Link:**  
-👉 [UC 2: Add New Contact (Current)](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC2-add-contact)
+👉 [UC 2: Add New Contact](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC2-add-contact)
+
+---
+
+### 🔄 UC 3: Edit Existing Contact 
+**Branch:** `feature/UC3-edit-contact`
+
+**Requirement:**
+Ability to edit an existing Contact in the Address Book by searching for their **ID** using the REST API.
+
+**Implementation Details:**
+* **Controller Layer:** Added `@PutMapping` in `AddressBookController` to handle update requests for an existing contact.
+* **Service Layer:** Implemented update logic in `AddressBookService` to search for the contact by ID and modify the existing contact details.
+* **DTO Integration:** Used `AddressBookDTO` to receive the updated contact data and map it to the existing contact object.
+
+**Key Code Files:**
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [DTO: AddressBookDTO.java](src/main/java/com/addressbook/dto/AddressBookDTO.java)
+
+🔗 **Code Link:**  
+👉 [UC 3: Edit Existing Contact](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC3-edit-contact)
 
 ---
