@@ -263,3 +263,23 @@ Ability to sort the entries in the address book by **City**, **State**, or **Zip
 👉 [UC 12: Sort Entries by City, State, or Zip](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC12-sort-by-location)
 
 ---
+
+### 🔄 UC 13: Address Book File IO
+**Branch:** `feature/UC13-file-io`
+
+**Requirement:**
+Ability to read or write the Address Book with persons' contact details into a file using Java File IO.
+
+**Implementation Details:**
+* **Persistence Layer:** Introduced Java File IO to move beyond in-memory storage, allowing data to be saved to a physical `.txt` file.
+* **Stream Processing:** Utilized `BufferedWriter` and `BufferedReader` for efficient data transfer between the application and the file system.
+* **Data Format:** Contacts are written in a structured string format to ensure they can be parsed back into objects during the read operation.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookFileIOService.java](src/main/java/com/addressbook/service/AddressBookFileIOService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 13: Address Book File IO](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC13-file-io)
+
+---
