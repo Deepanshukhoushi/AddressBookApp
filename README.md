@@ -140,3 +140,23 @@ Refactor the system to support multiple Address Books, each with a unique name, 
 👉 [UC 6: Multiple Address Books](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC6-multiple-addressbooks)
 
 ---
+
+### 🔄 UC 7: Prevent Duplicate Entries
+**Branch:** `feature/UC7-prevent-duplicate-contact`
+
+**Requirement:**
+Ensure there is no duplicate entry of the same person in a particular Address Book using Java Streams.
+
+**Implementation Details:**
+* **Logic:** Overrode the `equals()` and `hashCode()` methods in the `Contact` model to define equality based on name.
+* **Java Streams:** Used `.stream().anyMatch()` to check if a contact already exists before adding a new one.
+* **Validation:** Returns a warning or error response if a duplicate contact is detected.
+
+**Key Code Files:**
+* 📁 [Model: Contact.java](src/main/java/com/addressbook/model/Contact.java)
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+
+🔗 **Code Link:**  
+👉 [UC 7: Prevent Duplicate Entries](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC7-prevent-duplicate-contact)
+
+---
