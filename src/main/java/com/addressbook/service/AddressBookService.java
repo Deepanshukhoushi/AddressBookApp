@@ -235,4 +235,17 @@ public class AddressBookService {
 	            .sorted(Comparator.comparing(Contact::getZip))
 	            .toList();
 	}
+	
+	// Save all contacts to file
+	public void saveContactsToFile() {
+
+	    AddressBookFileIOService fileService = new AddressBookFileIOService();
+
+	    List<Contact> allContacts = addressBookMap.values()
+	            .stream()
+	            .flatMap(List::stream)
+	            .toList();
+
+	    fileService.writeContactsToFile(allContacts);
+	}
 }

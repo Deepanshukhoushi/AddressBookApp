@@ -153,4 +153,13 @@ public class AddressBookController {
 
 	    return ResponseEntity.ok(contacts);
 	}
+	
+	// API to write contacts to file
+	@GetMapping("/file/write")
+	public ResponseEntity<String> writeContactsToFile() {
+
+	    service.saveContactsToFile();
+
+	    return ResponseEntity.ok("Contacts written to file successfully");
+	}
 }
