@@ -120,3 +120,23 @@ Ensure the system can handle adding multiple contact persons to the Address Book
 👉 [UC 5: Ability to Add Multiple Persons](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC5-add-multiple-contacts)
 
 ---
+
+### 🔄 UC 6: Multiple Address Books
+**Branch:** `feature/UC6-multiple-addressbooks`
+
+**Requirement:**
+Refactor the system to support multiple Address Books, each with a unique name, using a Dictionary (Map) structure.
+
+**Implementation Details:**
+* **Data Structure:** Replaced the single `List` with a `HashMap<String, List<Contact>>` to store multiple Address Books.
+* **Controller Layer:** Updated endpoints to accept `addressBookName` as a path variable to target specific address books.
+* **Service Layer:** Implemented logic to check for the existence of an Address Book before adding contacts.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 6: Multiple Address Books](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC6-multiple-addressbooks)
+
+---
