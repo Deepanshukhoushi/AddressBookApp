@@ -17,4 +17,25 @@ public class AddressBookServiceTest {
 
         Assertions.assertTrue(contacts.size() >= 3);
     }
+    
+    @Test
+    public void givenContact_whenUpdated_shouldSyncWithDB() {
+
+        AddressBookService service = new AddressBookService();
+
+        String name = "Deepanshu";
+        String newCity = "Indore";
+
+        Contact contactInMemory = service.updateContactCity(name, newCity);
+
+        AddressBookDBService dbService = new AddressBookDBService();
+
+        List<Contact> contacts = dbService.getAllContactsFromDB();
+
+        Contact contactFromDB = contacts.stream()
+                .filter(c -> c.getFirstName().equals(name))
+                .findFirst()
+                .orElse(null);
+
+    }
 }

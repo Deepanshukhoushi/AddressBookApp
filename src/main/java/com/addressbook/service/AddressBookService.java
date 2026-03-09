@@ -275,6 +275,26 @@ public class AddressBookService {
 	    jsonService.writeContactsToJSON(allContacts);
 	}
 	
+	// Update contact in DB and sync memory
+	public Contact updateContactCity(String firstName, String city) {
+
+	    AddressBookDBService dbService = new AddressBookDBService();
+
+	    boolean dbUpdated = dbService.updateContactCity(firstName, city);
+
+	    if (!dbUpdated) {
+	        return null;
+	    }
+
+	    // reload contacts from DB
+	    List<Contact> contacts = dbService.getAllContactsFromDB();
+
+	    return contacts.stream()
+	            .filter(c -> c.getFirstName().equalsIgnoreCase(firstName))
+	            .findFirst()
+	            .orElse(null);
+	}
+	
 	// Retrieve contacts from database
 	public List<Contact> getContactsFromDatabase() {
 

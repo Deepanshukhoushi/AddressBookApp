@@ -115,8 +115,11 @@ public class Contact {
 
         Contact contact = (Contact) obj;
 
-        return firstName.equalsIgnoreCase(contact.firstName)
-                && lastName.equalsIgnoreCase(contact.lastName);
+        return firstName.equals(contact.firstName) &&
+               lastName.equals(contact.lastName) &&
+               city.equals(contact.city) &&
+               state.equals(contact.state) &&
+               zip.equals(contact.zip);
     }
 
     @Override

@@ -189,4 +189,19 @@ public class AddressBookController {
 
 	    return ResponseEntity.ok(contacts);
 	}
+	
+	// API to update contact city
+	@PutMapping("/db/update/{firstName}/{city}")
+	public ResponseEntity<Contact> updateContactCity(
+	        @PathVariable String firstName,
+	        @PathVariable String city) {
+
+	    Contact contact = service.updateContactCity(firstName, city);
+
+	    if (contact != null) {
+	        return ResponseEntity.ok(contact);
+	    }
+
+	    return ResponseEntity.notFound().build();
+	}
 }
