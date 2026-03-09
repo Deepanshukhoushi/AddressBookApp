@@ -160,3 +160,23 @@ Ensure there is no duplicate entry of the same person in a particular Address Bo
 👉 [UC 7: Prevent Duplicate Entries](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC7-prevent-duplicate-contact)
 
 ---
+
+### 🔄 UC 8: Search Person by City or State
+**Branch:** `feature/UC8-search-person-by-city-or-state`
+
+**Requirement:**
+Ability to search for a person across multiple address books by **City** or **State** using Java Streams.
+
+**Implementation Details:**
+* **Java Streams:** Utilized `flatMap` to consolidate contacts from all address books into a single stream.
+* **Filtering:** Applied `.filter()` to find matches based on the city or state name (case-insensitive).
+* **Controller:** Added global search endpoints `/search/city/{city}` and `/search/state/{state}`.
+
+**Key Code Files:**
+* 📁 [Service: AddressBookService.java](src/main/java/com/addressbook/service/AddressBookService.java)
+* 📁 [Controller: AddressBookController.java](src/main/java/com/addressbook/controller/AddressBookController.java)
+
+🔗 **Code Link:**  
+👉 [UC 8: Search Person by City or State](https://github.com/Deepanshukhoushi/AddressBookApp/tree/feature/UC8-search-person-by-city-or-state)
+
+---
