@@ -1,10 +1,18 @@
 package com.addressbook.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.addressbook.dto.AddressBookDTO;
 import com.addressbook.model.Contact;
@@ -86,5 +94,17 @@ public class AddressBookController {
         List<Contact> contacts = service.searchByState(state);
 
         return ResponseEntity.ok(contacts);
+    }
+    
+    @GetMapping("/view/city")
+    public ResponseEntity<Map<String, List<Contact>>> viewByCity() {
+
+        return ResponseEntity.ok(service.viewByCity());
+    }
+    
+    @GetMapping("/view/state")
+    public ResponseEntity<Map<String, List<Contact>>> viewByState() {
+
+        return ResponseEntity.ok(service.viewByState());
     }
 }

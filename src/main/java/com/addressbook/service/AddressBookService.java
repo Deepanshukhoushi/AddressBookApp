@@ -1,12 +1,17 @@
 package com.addressbook.service;
 
-import com.addressbook.dto.AddressBookDTO;
-import com.addressbook.model.Contact;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import com.addressbook.dto.AddressBookDTO;
+import com.addressbook.model.Contact;
 
 @Service
 public class AddressBookService {
@@ -151,6 +156,40 @@ public class AddressBookService {
         }
 
         return results;
+    }
+    
+    public Map<String, List<Contact>> viewByCity() {
+
+        log.info("Generating view grouped by City");
+
+        Map<String, List<Contact>> cityDictionary =
+                addressBookMap.values()
+                        .stream()
+                        .flatMap(List::stream)
+                        .collect(Collectors.groupingBy(Contact::getCity));
+
+        if (cityDictionary.isEmpty()) {
+            throw new IllegalArgumentException("No contacts available to group by city");
+        }
+
+        return cityDictionary;
+    }
+    
+    public Map<String, List<Contact>> viewByState() {
+
+        log.info("Generating view grouped by State");
+
+        Map<String, List<Contact>> stateDictionary =
+                addressBookMap.values()
+                        .stream()
+                        .flatMap(List::stream)
+                        .collect(Collectors.groupingBy(Contact::getState));
+
+        if (stateDictionary.isEmpty()) {
+            throw new IllegalArgumentException("No contacts available to group by state");
+        }
+
+        return stateDictionary;
     }
     
     // Get contacts from specific AddressBook
